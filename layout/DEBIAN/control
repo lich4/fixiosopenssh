@@ -1,0 +1,9 @@
+Package: chaoge.fixssh
+Name: OpenSSH修复
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: 修复使用iOS10上h3lix越狱后OpenSSH无法连接的bug
+Maintainer: nop
+Author: 571652571@qq.com
+Section: System
+Tag: role::hacker
