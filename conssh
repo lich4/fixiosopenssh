@@ -1,0 +1,27 @@
+#!/bin/sh
+
+register_device() {
+    export SSHPASS=alpine
+    ssh-keyscan 127.0.0.1 >> ~/.ssh/known_hosts
+    sshpass -e ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@127.0.0.1
+    echo done
+}
+
+main() {
+    out=$(ssh root@127.0.0.1 exit 2>&1)
+    if [ $? == 255 ]; then
+        if [[ $out == *"fingerprint"* ]]; then
+            register_device
+        else
+            echo "err1:no device connect?"
+        fi
+        return
+    fi
+    if [ $? == 0 ]; then
+        echo "device ok"
+    else
+        echo "err2"
+    fi
+}
+
+main
